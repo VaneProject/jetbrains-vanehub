@@ -32,9 +32,9 @@
     </extensions>
 
     <change-notes><![CDATA[
+        <br/><br/>
         1.0.0 (2024-09-18) <br/>
         ++++++++++++++++++ <br/>
         - Create Hub Plugin <br/>
-        <br/><br/>
     ]]></change-notes>
 </idea-plugin>

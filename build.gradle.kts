@@ -1,3 +1,5 @@
+import java.util.*
+
 plugins {
     id("java")
     id("org.jetbrains.kotlin.jvm") version "1.9.25"
@@ -34,13 +36,16 @@ tasks {
         untilBuild.set("242.*")
     }
 
+    val properties = Properties()
+    properties.load(project.file("../key/password.properties").inputStream())
+
     signPlugin {
-        certificateChain.set(System.getenv("CERTIFICATE_CHAIN"))
-        privateKey.set(System.getenv("PRIVATE_KEY"))
-        password.set(System.getenv("PRIVATE_KEY_PASSWORD"))
+        certificateChainFile.set(file("../key/chain.crt"))
+        privateKeyFile.set(file("../key/private.pem"))
+        password.set(properties.getProperty("PRIVATE_KEY_PASSWORD"))
     }
 
     publishPlugin {
-        token.set(System.getenv("PUBLISH_TOKEN"))
+        token.set(properties.getProperty("PUBLISH_TOKEN"))
     }
 }
